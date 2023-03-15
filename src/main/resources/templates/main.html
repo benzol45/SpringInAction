@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Main page</title>
+</head>
+<body>
+    <h1><div th:text="${username}">username mock</div></h1>
+    <br>
+    <a href="/design">Make new TACO</a>
+    <br>
+    <h3>My orders</h3>
+    <table style="border-style: solid">
+        <tr>
+            <th style="border-style: solid">id</th>
+            <th style="border-style: solid">Taco name</th>
+        </tr>
+        <div th:each="order: ${order_list}">
+            <tr>
+                <td style="border-style: solid" th:text="${order.id}"></td>
+                <td style="border-style: solid" th:text="${order.tacos.get(0).name}"></td>
+            </tr>
+        </div>
+    </table>
+</body>
+</html>
