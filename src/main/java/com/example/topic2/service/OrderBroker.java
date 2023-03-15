@@ -1,6 +1,7 @@
 package com.example.topic2.service;
 
 import com.example.topic2.entity.TacoOrder;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,11 @@ public class OrderBroker {
     }
 
     public void sendOrderToBroker(TacoOrder order) {
-        rabbitTemplate.convertAndSend("","", order);
+        rabbitTemplate.convertAndSend("order","orders", order);
+    }
+
+    @RabbitListener(queues = "orders")
+    public void weAreGettingMessageFromRabbit(TacoOrder tacoOrder) {
+        System.out.println(tacoOrder);
     }
 }

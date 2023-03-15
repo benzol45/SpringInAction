@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import com.example.topic2.security.User;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 
@@ -18,6 +20,7 @@ public class TacoOrder {
     private long id;
     @ManyToOne
     @JoinColumn(name = "owner")
+    @JsonIgnore
     private User owner;
     private String deliveryName;
     private String deliveryStreet;
