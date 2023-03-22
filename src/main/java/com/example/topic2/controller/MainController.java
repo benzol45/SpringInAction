@@ -1,11 +1,9 @@
 package com.example.topic2.controller;
 
-import com.example.topic2.entity.TacoOrder;
+import com.example.topic2.integration.FileGateway;
 import com.example.topic2.security.User;
 import com.example.topic2.service.OrderService;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +20,7 @@ public class MainController {
     public MainController(OrderService orderService) {
         this.orderService = orderService;
         //this.rabbitTemplate = rabbitTemplate;
+
     }
 
     @GetMapping

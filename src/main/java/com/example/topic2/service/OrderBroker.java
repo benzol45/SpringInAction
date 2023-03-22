@@ -21,8 +21,8 @@ public class OrderBroker {
         rabbitTemplate.convertAndSend("order","orders", order);
     }
 
-    @RabbitListener(queues = "orders")
-    public void weAreGettingMessageFromRabbit(TacoOrder tacoOrder) {
-        System.out.println(tacoOrder);
-    }
+    //@RabbitListener(queues = "orders")
+    //public void weAreGettingMessageFromRabbit(TacoOrder tacoOrder) {
+    //    System.out.println(tacoOrder);
+    //}
 }

@@ -3,6 +3,8 @@ package com.example.topic2.controller;
 import com.example.topic2.entity.Ingredient;
 import com.example.topic2.entity.Taco;
 import com.example.topic2.entity.TacoOrder;
+import com.example.topic2.integration.FileGateway;
+import com.example.topic2.integration.MySimpleClass;
 import com.example.topic2.security.User;
 import com.example.topic2.service.TacoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +22,12 @@ import java.util.stream.Collectors;
 @SessionAttributes("tacoOrder")
 public class DesignTacoController {
     private final TacoService tacoService;
+    private final FileGateway fileGateway;
 
     @Autowired
-    public DesignTacoController(TacoService tacoService) {
+    public DesignTacoController(TacoService tacoService, FileGateway fileGateway) {
         this.tacoService = tacoService;
+        this.fileGateway = fileGateway;
     }
 
     @ModelAttribute
@@ -48,6 +52,10 @@ public class DesignTacoController {
 
     @GetMapping("/design")
     public String showDesignForm(Model model , @AuthenticationPrincipal User user) {
+
+        fileGateway.writeToFile("MyFile", new MySimpleClass(1,"First message"));
+
+
         if (user!=null) {
             model.addAttribute("username", user.getUsername());
         } else {
